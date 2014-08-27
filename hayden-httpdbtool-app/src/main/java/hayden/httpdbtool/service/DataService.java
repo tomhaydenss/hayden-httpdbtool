@@ -16,7 +16,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("/datasource/{datasource}")
+@Path("/dataservice/datasource/{datasource}")
 @Consumes(MediaType.TEXT_PLAIN)
 public class DataService {
 
@@ -33,7 +33,7 @@ public class DataService {
 			if (result != null && result.size() > 0) {
 				return Response.ok(formatter.format(result)).type(MediaType.APPLICATION_JSON).build();
 			} else {
-				return noContentResponse(0);
+				return noDataResponse(0);
 			}
 		} catch (Exception e) {
 			return serverErrorResponse(e.getMessage());
@@ -48,14 +48,14 @@ public class DataService {
 		DataAccessObject dao = new DataAccessObject(dataSource);
 		try {
 			int rowsAffected = dao.write(sqlFromBody);
-			return noContentResponse(rowsAffected);
+			return noDataResponse(rowsAffected);
 		} catch (Exception e) {
 			return serverErrorResponse(e.getMessage());
 		}
 	}
 
-	private Response noContentResponse(int rowsAffected) {
-		return Response.noContent().entity(String.format("(%d row(s) affected)", rowsAffected)).build();
+	private Response noDataResponse(int rowsAffected) {
+		return Response.ok().entity(String.format("(%d row(s) affected)", rowsAffected)).build();
 	}
 
 	private Response serverErrorResponse(String errorMessage) {
