@@ -11,11 +11,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class DataAccessObject {
+public class JDBCDAOImpl {
 
 	private String jndiDataSource;
 
-	public DataAccessObject(String dataSource) {
+	public JDBCDAOImpl(String dataSource) {
 		super();
 		this.jndiDataSource = "java:/" + dataSource;
 	}

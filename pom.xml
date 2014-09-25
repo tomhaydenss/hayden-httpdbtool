@@ -11,6 +11,7 @@
 	<modules>
 		<module>hayden-httpdbtool-app</module>
 		<module>hayden-httpdbtool-client</module>
+		<module>hayden-httpdbtool-jpamodelsample</module>
 	</modules>
 	
 </project>
